@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SPXL & SPY Backtesting Dashboard</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card-bg: #1e293b;
+      --accent: #38bdf8;
+      --accent-hover: #0ea5e9;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --border: #334155;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 2rem 1rem;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+    h1 {
+      font-size: 2.5rem;
+      color: #fff;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(to right, #38bdf8, #818cf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .subtitle {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent);
+      box-shadow: 0 10px 25px -5px rgba(56, 189, 248, 0.1);
+    }
+    .card-badge {
+      display: inline-block;
+      align-self: flex-start;
+      padding: 0.25rem 0.6rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-radius: 9999px;
+      margin-bottom: 1rem;
+    }
+    .badge-blue { background: rgba(56, 189, 248, 0.15); color: #38bdf8; }
+    .badge-purple { background: rgba(168, 85, 247, 0.15); color: #c084fc; }
+    .badge-amber { background: rgba(245, 158, 11, 0.15); color: #fbbf24; }
+    .badge-emerald { background: rgba(16, 185, 129, 0.15); color: #34d399; }
+    .card h2 {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+      color: #fff;
+    }
+    .card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+    }
+    .btn {
+      display: inline-block;
+      text-align: center;
+      background: var(--accent);
+      color: #0f172a;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 0.75rem 1.25rem;
+      border-radius: 8px;
+      transition: background 0.2s;
+    }
+    .btn:hover {
+      background: var(--accent-hover);
+    }
+    footer {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+      padding-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>SPXL & SPY Backtesting Dashboard</h1>
+      <p class="subtitle">
+        Interactive quantitative models simulating 3x daily leverage (SPXL), historical swap borrowing costs, and Dollar Cost Averaging (DCA) performance across multiple market cycles.
+      </p>
+    </header>
+
+    <div class="grid">
+      <!-- Card 1 -->
+      <div class="card">
+        <div>
+          <span class="card-badge badge-blue">Price Simulation</span>
+          <h2>SPXL vs SPY Simulation (Log Scale)</h2>
+          <p>Historical price backtest from 1996 forward modeling 3x daily returns and financing costs vs SPY and real SPXL inception.</p>
+        </div>
+        <a href="SPXL_chart_SPY.html" class="btn">Open Interactive Chart &rarr;</a>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="card">
+        <div>
+          <span class="card-badge badge-purple">Return Analysis</span>
+          <h2>SPXL vs SPY Percentage Returns</h2>
+          <p>Cumulative percentage gains and losses comparison from 1996 onwards showing leverage magnification over long horizons.</p>
+        </div>
+        <a href="SPXL_vs_SPY_Pct.html" class="btn">Open Interactive Chart &rarr;</a>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="card">
+        <div>
+          <span class="card-badge badge-emerald">DCA Strategy</span>
+          <h2>DCA ($1k/mo): 1996 to Present (Log)</h2>
+          <p>Monthly Dollar Cost Averaging starting in 1996, withstanding both the Dot-Com crash and the 2008 Great Financial Crisis.</p>
+        </div>
+        <a href="DCA_Chart_Log.html" class="btn">Open Interactive Chart &rarr;</a>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="card">
+        <div>
+          <span class="card-badge badge-emerald">DCA Strategy</span>
+          <h2>DCA ($1k/mo): 1996 to Present (Linear)</h2>
+          <p>Linear scale visualization highlighting total nominal dollar wealth accumulation over time.</p>
+        </div>
+        <a href="DCA_Chart.html" class="btn">Open Interactive Chart &rarr;</a>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="card">
+        <div>
+          <span class="card-badge badge-amber">Stress Test</span>
+          <h2>DCA: 1980 to 2008 Recession Low</h2>
+          <p>30-year DCA backtest ending right at the depths of the March 2009 market bottom to assess peak-to-trough leveraged pain.</p>
+        </div>
+        <a href="DCA_1980_2009.html" class="btn">Open Interactive Chart &rarr;</a>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="card">
+        <div>
+          <span class="card-badge badge-blue">Complete History</span>
+          <h2>DCA ($1k/mo): 1980 to Present (Log)</h2>
+          <p>The ultimate 46-year DCA backtest spanning 1980 through modern day, tracking wealth generation across every major economic cycle.</p>
+        </div>
+        <a href="DCA_1980_Present_Log.html" class="btn">Open Interactive Chart &rarr;</a>
+      </div>
+    </div>
+
+    <footer>
+      <p>Generated for bryan-y88 &bull; Hosted on GitHub Pages &bull; Powered by Plotly & Python</p>
+    </footer>
+  </div>
+</body>
+</html>
